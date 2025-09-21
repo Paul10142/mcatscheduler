@@ -1,0 +1,29 @@
+I want to build a small web app that automatically generates a customized MCAT study plan spreadsheet.
+
+Context & Background:
+	•	I’m an expert MCAT tutor with a master spreadsheet that includes examples of 10 different study schedules. Most of these follow the same structure — students tell me their test date, average daily study hours, and preferred practice test days. I use that to plan out their entire prep.
+	•	I keep a master list of all available study questions/resources and slot them into the schedule in a predictable order (AAMC first, then others).
+	•	I want this web app to let students input:
+	•	MCAT test date (or number of days until test)
+	•	Average weekday/weekend study hours
+	•	Which days they want to take practice exams
+	•	Any blackout days (vacations, religious holidays)
+	•	Based on that input, the app should deterministically generate a formatted Excel file that looks professional every time (using a locked template with frozen headers, conditional formatting, etc.).
+	•	It’s very important the output is consistent and never “half formatted” — students must trust the schedule.
+
+What I want built:
+	•	A simple form (web UI) where users input the above details.
+	•	A backend that takes those inputs, runs a deterministic algorithm to create a day-by-day plan, and fills an existing Excel template with the schedule.
+	•	Return the result as a downloadable .xlsx file (or optionally copy it to a Google Sheet).
+	•	The logic should:
+	•	Place full-length practice tests on the chosen days, add review days after them, and respect blackout days.
+	•	Distribute practice questions evenly up to the test date, based on the available hours/day.
+	•	Include a taper in the final 2–3 days.
+	•	Use a template-based approach so that all styles, headers, and formatting stay intact.
+
+Quality Checklist:
+	1.	Deterministic output — same inputs produce the same schedule every time.
+	2.	Strict input validation — reject impossible dates or hours/day > 16.
+	3.	Template-only formatting — the code just fills data into the sheet.
+	4.	Always return a valid spreadsheet (no broken formulas or blank rows).
+	5.	Easy to swap template versions in the future without breaking the app.
